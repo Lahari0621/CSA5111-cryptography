@@ -1,9 +1,19 @@
 #include <stdio.h>
+#include <string.h>
+#include <ctype.h>
 
 int main() {
     char text[100];
-    char key[27] = "QWERTYUIOPASDFGHJKLZXCVBNM";
+    char key[27];
     int i, j;
+
+    printf("Enter 26-letter key: ");
+    fgets(key, sizeof(key), stdin);
+    key[strcspn(key, "\n")] = '\0';
+    while (getchar() != '\n');
+    for (i = 0; key[i] != '\0'; i++) {
+        key[i] = toupper(key[i]);
+    }
 
     printf("Enter text: ");
     fgets(text, sizeof(text), stdin);
